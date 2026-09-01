@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELORNE — Reawakened</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a96e;
+    --gold-dim: #a88a50;
+    --gold-faint: rgba(201,169,110,0.12);
+    --cream: #e8e4df;
+    --silver: #999;
+    --silver-dark: #666;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #000; }
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: #000;
+    color: var(--cream);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === OPENING SEQUENCE === */
+  .opening {
+    height: 45vh;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .logo-mark {
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--cream);
+    opacity: 0;
+    animation: logoFade 2s ease forwards 0.5s;
+  }
+  .logo-sub {
+    font-size: clamp(9px, 1.2vw, 12px);
+    font-weight: 300;
+    letter-spacing: 0.6em;
+    color: var(--gold);
+    margin-top: 12px;
+    opacity: 0;
+    animation: logoFade 1.5s ease forwards 1.2s;
+  }
+  .scroll-cue { display: none; }
+
+  @keyframes logoFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes logoFloat {
+    to { transform: translateY(-60px); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* === CONTENT === */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+  }
+
+  /* === VIDEO === */
+  .video-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    margin-bottom: 0;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 24px;
+  }
+  .video-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .video-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+  }
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+  }
+
+  /* === FILM TITLE === */
+  .film-title {
+    text-align: center;
+    margin: 28px 0 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .film-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .film-title h1 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+  }
+  .film-title .year {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    margin-top: 12px;
+  }
+
+  /* === DIVIDER === */
+  .gold-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 64px;
+    box-shadow: 0 0 12px rgba(201,169,110,0.3);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .gold-line.visible { opacity: 1; }
+
+  /* === DESCRIPTION === */
+  .description {
+    text-align: center;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .description.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .description p {
+    font-size: 15px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 2;
+    color: var(--silver);
+    max-width: 680px;
+    margin: 0 auto;
+    letter-spacing: 0.02em;
+  }
+
+  /* === CREDITS === */
+  .credits {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .credits.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .credits-title {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    margin-bottom: 32px;
+  }
+  .credits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 48px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .credit-item {
+    text-align: center;
+  }
+  .credit-role {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--silver-dark);
+    margin-bottom: 4px;
+  }
+  .credit-name {
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+  }
+
+  /* === SIGNATURE === */
+  .signature {
+    text-align: center;
+    padding-top: 64px;
+    border-top: 1px solid var(--gold-faint);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .signature.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .sig-name {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .sig-tagline {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 48px;
+  }
+  .copyright {
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--silver-dark);
+    max-width: 520px;
+    margin: 0 auto;
+    letter-spacing: 0.03em;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .content { padding: 0 20px 80px; }
+    .credits-grid { grid-template-columns: 1fr; gap: 20px; }
+    .opening { height: 85vh; }
+  }
+
+  /* === REDUCED MOTION === */
+  @media (prefers-reduced-motion: reduce) {
+    .logo-mark, .logo-sub, .scroll-cue { animation: none; opacity: 1; }
+    .video-section, .film-title, .gold-line, .description, .credits, .signature {
+      opacity: 1; transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- OPENING SEQUENCE -->
+<div class="opening">
+  <div class="logo-mark">VELORNE</div>
+  <div class="logo-sub">The Authority of Night</div>
+  <div class="scroll-cue"><span></span></div>
+</div>
+
+<!-- VIDEO (wide, outside content column) -->
+<div class="video-section anim">
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/BEw5ybNM6Q8?rel=0&modestbranding=1&color=white" allowfullscreen allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- FILM TITLE -->
+  <div class="film-title anim">
+    <h1>VELORNE — Reawakened</h1>
+    <div class="year">2 0 2 6</div>
+  </div>
+
+  <div class="gold-line anim"></div>
+
+  <!-- DESCRIPTION -->
+  <div class="description anim">
+    <p>VELORNE — Reawakened is an original cinematic visual work by Oathwoven, developed through character design, worldbuilding, visual direction, storyboarding, motion, and post-production.</p>
+    <p style="margin-top: 20px;">A study in dark elegance, restrained desire, and quiet power — where character, fashion, atmosphere, and narrative are woven into a single visual identity.</p>
+  </div>
+
+  <!-- CREDITS -->
+  <div class="credits anim">
+    <div class="credits-title">Credits</div>
+    <div class="credits-grid">
+      <div class="credit-item">
+        <div class="credit-role">Concept & Creative Direction</div>
+        <div class="credit-name">Oathwoven</div>
+      </div>
+      <div class="credit-item">
+        <div class="credit-role">Character & World Design</div>
+        <div class="credit-name">Oathwoven</div>
+      </div>
+      <div class="credit-item">
+        <div class="credit-role">Storyboard & Visual Development</div>
+        <div class="credit-name">Oathwoven</div>
+      </div>
+      <div class="credit-item">
+        <div class="credit-role">Editing & Post-production</div>
+        <div class="credit-name">Oathwoven</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="signature anim">
+    <div class="sig-name">Oathwoven</div>
+    <div class="sig-tagline">Original Visual Stories & Cinematic Works</div>
+    <div class="copyright">
+      Created and produced by Oathwoven © 2026<br>
+      This work is provided for authorized promotional viewing only.<br>
+      Unauthorized reproduction, re-uploading, redistribution, modification,<br>
+      or commercial use is prohibited without prior permission.
+    </div>
+  </div>
+
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
