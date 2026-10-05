@@ -1,0 +1,18 @@
+VELORNE clue illustrations, v16
+Method: built-in image generation, using the existing window and desk as visual references.
+
+clue-window-v16.png
+Prompt brief: Photorealistic Gothic mansion rain-window wood-frame closeup. Ebony wood, antique brass, warm candles and cool moonlight. Exactly three engraved parallel strokes and a crescent, legible as a puzzle clue. No people or UI.
+
+clue-candle-v16.png
+Prompt brief: Closeup of ornate antique brass candle-holder rotary base on black marble. Seven detents: three each side of a longer center mark, physical pointer and rotary joint. Match existing Gothic desk lighting and materials.
+
+clue-desk-dark-v16.png
+Prompt brief: Straight-on closeup of black carved desk front with eight-point brass emblem. Central inset pressable dent and ring seam, dark candlelit mansion, no text. Readable aged wood and metal. The game further dims this view before the clue is illuminated.
+
+clue-desk-lit-v16.png
+Prompt brief: Lighting-only edit of the generated desk closeup. Keep camera, crop, emblem, wood grain and all geometry unchanged. Add warm side raking candlelight revealing the central dent and mechanism seam.
+
+V18 — Built-in image generation. entry-closed-v18.png: closed ebony double entrance doors seen from within, brass lever/lock, moonlit gothic console and portable chamberstick. entry-candle-v18.png: matching close-up of console and portable single candleholder. drawer-open-v18.png: open ebony desk drawer, black velvet with black/brass seal lying beside closed return box. References: hall.webp, desk.webp; candle close-up references generated foyer.
+
+V21 — Built-in imagegen. entry-handle-v21.png: matching closed ebony entry double door brass lever/keyhole macro, moonlight left/candlelight right, reference entry-closed-v18.png. corridor-handle-v21.png: matching corridor door brass handle/keyhole macro, reference door.webp. No hands or text.
